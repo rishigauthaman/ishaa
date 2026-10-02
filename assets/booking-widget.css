@@ -1,0 +1,236 @@
+/* booking-widget.css — in-chat booking flow for the AI Concierge.
+   Uses the chatbot's own tokens: gold #c5a059, navy #0e1626/#080d17. */
+
+/* Launcher bar above the input */
+.ifqbk-launcher {
+  padding: 8px 14px 10px;
+  background: transparent;
+}
+.ifqbk-launch-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid rgba(197, 160, 89, 0.5);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.12), rgba(197, 160, 89, 0.04));
+  color: #c5a059;
+  font-family: 'Sora', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.ifqbk-launch-btn:hover {
+  background: rgba(197, 160, 89, 0.2);
+  box-shadow: 0 0 14px rgba(197, 160, 89, 0.35);
+}
+.ifqbk-launch-btn svg { width: 13px; height: 13px; fill: currentColor; }
+
+/* Header calendar button inherits .ifq-header-btn styles from chatbot.css */
+
+/* Booking card bubble */
+.ifqbk-bubble {
+  width: 100%;
+  max-width: 100% !important;
+}
+.ifqbk-card {
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: 12px;
+  background: linear-gradient(160deg, #10192e, #0a101f);
+  padding: 14px;
+  margin-top: 2px;
+}
+.ifqbk-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  color: #f6f3ec;
+  margin: 0 0 2px;
+}
+.ifqbk-sub {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  color: rgba(246, 243, 236, 0.55);
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+.ifqbk-step-label {
+  font-family: 'Sora', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #c5a059;
+  margin: 10px 0 8px;
+}
+
+/* Option buttons (types) */
+.ifqbk-options { display: flex; flex-direction: column; gap: 6px; }
+.ifqbk-opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: 9px;
+  background: rgba(6, 11, 20, 0.6);
+  color: #f6f3ec;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12.5px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.ifqbk-opt:hover { border-color: #c5a059; background: rgba(197, 160, 89, 0.1); }
+.ifqbk-opt small {
+  font-family: 'Sora', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: rgba(197, 160, 89, 0.9);
+  white-space: nowrap;
+}
+
+/* Chip rows (dates, times) */
+.ifqbk-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 168px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+.ifqbk-chip {
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: 8px;
+  background: rgba(6, 11, 20, 0.6);
+  color: #f6f3ec;
+  font-family: 'Sora', sans-serif;
+  font-size: 10.5px;
+  padding: 7px 10px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  text-align: center;
+  line-height: 1.35;
+}
+.ifqbk-chip b { display: block; font-size: 12px; color: #c5a059; font-weight: 600; }
+.ifqbk-chip:hover { border-color: #c5a059; background: rgba(197, 160, 89, 0.12); }
+
+/* Form */
+.ifqbk-form { display: flex; flex-direction: column; gap: 7px; }
+.ifqbk-input, .ifqbk-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 11px;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: 8px;
+  background: rgba(6, 11, 20, 0.7);
+  color: #f6f3ec;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12.5px;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+.ifqbk-input:focus, .ifqbk-textarea:focus { border-color: #c5a059; }
+.ifqbk-textarea { min-height: 56px; resize: vertical; }
+.ifqbk-hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+
+/* Primary / ghost buttons */
+.ifqbk-btn {
+  padding: 10px 14px;
+  border: 1px solid #c5a059;
+  border-radius: 999px;
+  background: #c5a059;
+  color: #060b14;
+  font-family: 'Sora', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: box-shadow 0.25s ease, transform 0.15s ease;
+}
+.ifqbk-btn:hover { box-shadow: 0 0 16px rgba(197, 160, 89, 0.5); }
+.ifqbk-btn:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
+.ifqbk-back {
+  background: transparent;
+  border: none;
+  color: rgba(246, 243, 236, 0.5);
+  font-family: 'Sora', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.ifqbk-back:hover { color: #c5a059; }
+.ifqbk-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; }
+
+/* Review summary */
+.ifqbk-summary {
+  border: 1px dashed rgba(197, 160, 89, 0.4);
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  color: rgba(246, 243, 236, 0.85);
+  line-height: 1.65;
+}
+.ifqbk-summary b { color: #c5a059; font-weight: 600; }
+
+/* States */
+.ifqbk-note {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10.5px;
+  color: rgba(246, 243, 236, 0.45);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+.ifqbk-error {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  color: #e08a8a;
+  margin-top: 6px;
+}
+.ifqbk-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Sora', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(197, 160, 89, 0.8);
+  padding: 8px 0;
+}
+.ifqbk-spinner {
+  width: 12px; height: 12px;
+  border: 2px solid rgba(197, 160, 89, 0.25);
+  border-top-color: #c5a059;
+  border-radius: 50%;
+  animation: ifqbk-spin 0.8s linear infinite;
+}
+@keyframes ifqbk-spin { to { transform: rotate(360deg); } }
+
+.ifqbk-success {
+  text-align: center;
+  padding: 6px 0 2px;
+}
+.ifqbk-check {
+  width: 44px; height: 44px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  border: 1px solid #c5a059;
+  display: grid;
+  place-items: center;
+  color: #c5a059;
+  box-shadow: 0 0 18px rgba(197, 160, 89, 0.4);
+}
+.ifqbk-check svg { width: 20px; height: 20px; fill: currentColor; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ifqbk-spinner { animation-duration: 1.6s; }
+  .ifqbk-launch-btn, .ifqbk-opt, .ifqbk-chip, .ifqbk-btn { transition: none; }
+}

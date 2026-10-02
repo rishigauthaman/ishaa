@@ -1,0 +1,294 @@
+/* featured.css — "As Featured In" press strip + stats band + 3 feature cards,
+   placed directly below the hero. Uses the site's own design tokens. */
+
+.ifq-ft-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-navy-dark, #060f1a);
+  border-top: 1px solid rgba(212, 175, 55, 0.12);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+  padding: clamp(4.5rem, 8vw, 7rem) 1.5rem;
+}
+.ifq-ft-section::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -10%;
+  width: 50rem;
+  height: 50rem;
+  background: radial-gradient(closest-side, rgba(212, 175, 55, 0.05), transparent 70%);
+  pointer-events: none;
+}
+.ifq-ft-inner { position: relative; max-width: 72rem; margin: 0 auto; }
+
+.ifq-ft-eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--font-sub, "Sora", sans-serif);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold, #d4af37);
+}
+.ifq-ft-eyebrow::before,
+.ifq-ft-eyebrow::after {
+  content: "";
+  width: 3rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6));
+}
+.ifq-ft-eyebrow::after {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.6), transparent);
+}
+
+/* ---- Press wordmark strip ---- */
+.ifq-ft-press {
+  margin-top: 2.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1.4rem 3.2rem;
+}
+.ifq-ft-brand {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-weight: 600;
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(246, 243, 236, 0.55);
+  text-decoration: none;
+  transition: color 0.35s ease;
+  white-space: nowrap;
+}
+a.ifq-ft-brand:hover { color: var(--color-gold, #d4af37); }
+a.ifq-ft-brand:focus-visible {
+  outline: 2px solid var(--color-gold, #d4af37);
+  outline-offset: 3px;
+}
+
+/* ---- Stats band ---- */
+.ifq-ft-stats {
+  margin-top: 3.6rem;
+  padding-top: 2.4rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.6rem;
+  text-align: center;
+}
+.ifq-ft-stat-num {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  color: var(--color-gold, #d4af37);
+  line-height: 1;
+}
+.ifq-ft-stat-label {
+  margin-top: 0.55rem;
+  font-family: var(--font-sub, "Sora", sans-serif);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(246, 243, 236, 0.5);
+}
+
+/* ---- Feature cards ---- */
+.ifq-ft-cards {
+  margin-top: 3.6rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.ifq-ft-card {
+  position: relative;
+  padding: 2rem 1.9rem;
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  background: rgba(2, 4, 7, 0.5);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.35s ease, transform 0.35s ease;
+}
+.ifq-ft-card:hover { border-color: rgba(212, 175, 55, 0.4); transform: translateY(-3px); }
+.ifq-ft-card-eyebrow {
+  font-family: var(--font-sub, "Sora", sans-serif);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-gold, #d4af37);
+}
+.ifq-ft-card-title {
+  margin-top: 1rem;
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  line-height: 1.25;
+  color: var(--color-ivory, #f6f3ec);
+}
+.ifq-ft-card-copy {
+  margin-top: 0.9rem;
+  font-family: var(--font-body, "Manrope", sans-serif);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(246, 243, 236, 0.6);
+  flex: 1;
+}
+.ifq-ft-card-cta {
+  margin-top: 1.6rem;
+  align-self: flex-start;
+  font-family: var(--font-sub, "Sora", sans-serif);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-champagne, #e8d4b8);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  padding-bottom: 4px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.ifq-ft-card-cta:hover { color: var(--color-gold, #d4af37); border-color: var(--color-gold, #d4af37); }
+.ifq-ft-card-cta:focus-visible {
+  outline: 2px solid var(--color-gold, #d4af37);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .ifq-ft-stats { grid-template-columns: repeat(3, 1fr); gap: 1.8rem 1rem; }
+  .ifq-ft-cards { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ifq-ft-card, .ifq-ft-brand, .ifq-ft-card-cta { transition: none; }
+}
+
+/* ---- Per-brand wordmark typography (single-tint press strip) ---- */
+.ifq-ft-brand--forbes {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.03em;
+  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+}
+.ifq-ft-brand--khaleej {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.05em;
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+}
+.ifq-ft-brand--gulf {
+  font-family: var(--font-sub, "Sora", sans-serif);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+}
+.ifq-ft-brand--arab {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+}
+.ifq-ft-brand--zee {
+  font-family: var(--font-body, "Manrope", sans-serif);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+}
+
+/* ---- Official logo files (when provided): uniform single-tint treatment ---- */
+.ifq-ft-brand img {
+  height: 26px;
+  width: auto;
+  display: block;
+  filter: grayscale(1) brightness(0) invert(0.82);
+  opacity: 0.75;
+  transition: opacity 0.35s ease;
+}
+a.ifq-ft-brand:hover img { opacity: 1; }
+@media (max-width: 640px) { .ifq-ft-brand img { height: 20px; } }
+
+
+/* ---- Intro section: video welcome + book & podcast ---- */
+.ifq-in-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-void, #020407);
+  padding: clamp(4.5rem, 8vw, 7rem) 1.5rem;
+}
+.ifq-in-grid {
+  margin-top: 2.6rem;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2.4rem;
+  align-items: center;
+}
+.ifq-in-frame {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: var(--color-black-soft, #070c14);
+  overflow: hidden;
+}
+.ifq-in-play { position: absolute; inset: 0; border: 0; padding: 0; cursor: pointer; background: none; width: 100%; }
+.ifq-in-play img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; opacity: 0.85; display: block; }
+.ifq-in-play::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(2,4,7,.75), rgba(2,4,7,.05) 55%); }
+.ifq-in-playbtn {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 66px; height: 66px; border-radius: 999px; z-index: 2;
+  display: grid; place-items: center;
+  border: 1px solid rgba(212, 175, 55, 0.7);
+  background: rgba(2, 4, 7, 0.5);
+  color: var(--color-gold, #d4af37);
+  box-shadow: 0 0 26px rgba(212, 175, 55, 0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.ifq-in-playbtn svg { width: 24px; height: 24px; fill: currentColor; margin-left: 3px; }
+.ifq-in-play:hover .ifq-in-playbtn { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 38px rgba(212,175,55,.55); }
+.ifq-in-caption {
+  position: absolute; left: 1.4rem; bottom: 1.2rem; z-index: 2;
+  font-family: var(--font-sub, "Sora", sans-serif); font-size: 10px;
+  letter-spacing: 0.26em; text-transform: uppercase; color: rgba(246,243,236,.85);
+}
+.ifq-in-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.ifq-in-heading {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-weight: 500; font-size: clamp(1.9rem, 3.6vw, 2.7rem); line-height: 1.15;
+  color: var(--color-ivory, #f6f3ec); margin: 0 0 1.4rem;
+}
+.ifq-in-gold {
+  color: transparent; font-style: italic;
+  background: linear-gradient(90deg,#d4af37,#f6e8c8,#d4af37) 0 0/200%;
+  -webkit-background-clip: text; background-clip: text;
+}
+.ifq-in-book {
+  display: inline-flex; flex-direction: column; gap: 0.35rem;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-left: 6px solid rgba(212, 175, 55, 0.85);
+  padding: 1.3rem 1.6rem; background: linear-gradient(160deg, #0b1322, #060d18);
+}
+.ifq-in-book-rule { width: 2.2rem; height: 1px; background: var(--color-gold, #d4af37); }
+.ifq-in-book-title {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem); color: var(--color-champagne, #e8d4b8);
+  letter-spacing: 0.04em;
+}
+.ifq-in-book-by {
+  font-family: var(--font-sub, "Sora", sans-serif); font-size: 9px;
+  letter-spacing: 0.24em; text-transform: uppercase; color: rgba(246,243,236,.5);
+}
+.ifq-in-copy {
+  margin: 1.2rem 0 1.4rem; font-family: var(--font-body, "Manrope", sans-serif);
+  font-size: 0.92rem; line-height: 1.75; color: rgba(246,243,236,.6); max-width: 30rem;
+}
+.ifq-in-pod {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 0.85rem 1.4rem; border: 1px solid rgba(212, 175, 55, 0.45);
+  font-family: var(--font-sub, "Sora", sans-serif); font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none;
+  color: var(--color-champagne, #e8d4b8);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+.ifq-in-pod svg { width: 15px; height: 15px; fill: currentColor; }
+.ifq-in-pod:hover { background: var(--color-gold, #d4af37); color: var(--color-black, #04070c); }
+@media (max-width: 900px) { .ifq-in-grid { grid-template-columns: 1fr; } }

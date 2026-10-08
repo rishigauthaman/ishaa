@@ -31,7 +31,8 @@ const DEFAULT_CONTENT = {
     { category: 'Legacy', title: 'A Glimpse Into a Two-Year Journey', excerpt: 'An exclusive birthday edition exploring the discipline, artistry, resilience and humanitarian purpose behind the Ishha experience.', image: '/images/linkedin-blog-2.jpg', url: 'https://www.linkedin.com/feed/update/urn:li:activity:7444707798413721600/' },
     { category: 'Global Visionary', title: 'The First Definitive Account of a Global Visionary', excerpt: 'A portrait of a bridge-builder connecting AI innovation and international diplomacy with empathy, education and social impact.', image: '/images/linkedin-blog-3.jpg', url: 'https://www.linkedin.com/feed/update/urn:li:activity:7437068264381247488/' },
     { category: 'Leadership', title: 'A Powerful New Chapter in Technology Leadership', excerpt: 'Celebrating a new journey shaping Cloud Infrastructure, Data and AI for the public sector across the Middle East and Africa.', image: '/images/linkedin-blog-4.jpg', url: 'https://www.linkedin.com/feed/update/urn:li:activity:7455981449754693632/' }
-  ]
+  ],
+  overrides: []
 };
 
 const json = (body, status = 200) => new Response(JSON.stringify(body), {
@@ -40,10 +41,10 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), {
 });
 
 function clean(value) {
-  if (Array.isArray(value)) return value.slice(0, 12).map(clean);
+  if (Array.isArray(value)) return value.slice(0, 250).map(clean);
   if (value && typeof value === 'object') {
     const out = {};
-    Object.keys(value).slice(0, 60).forEach((key) => { out[key] = clean(value[key]); });
+    Object.keys(value).slice(0, 100).forEach((key) => { out[key] = clean(value[key]); });
     return out;
   }
   return typeof value === 'string' ? value.trim().slice(0, 1200) : value;

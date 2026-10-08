@@ -53,12 +53,33 @@
       card.href = post.url; text(card, '.ifq-blog-category', post.category); text(card, '.ifq-blog-title', post.title); text(card, '.ifq-blog-excerpt', post.excerpt);
       var image = card.querySelector('.ifq-blog-media img'); if (image && post.image) image.src = post.image;
     });
+    applyOverrides(content.overrides || []);
   }
-  fetch('/api/content').then(function (r) { return r.ok ? r.json() : null; }).then(function (content) {
+  function applyOverrides(overrides) {
+    Array.prototype.forEach.call(overrides, function (change) {
+      if (!change || !change.selector) return;
+      var node;
+      try { node = document.querySelector(change.selector); } catch (_) { return; }
+      if (!node) return;
+      if (change.type === 'text' && typeof change.text === 'string') node.textContent = change.text;
+      if (change.type === 'image') {
+        if (change.src) node.setAttribute('src', change.src);
+        if (typeof change.alt === 'string') node.setAttribute('alt', change.alt);
+      }
+      if (change.type === 'link') {
+        if (change.href) node.setAttribute('href', change.href);
+        if (typeof change.text === 'string' && change.text) node.textContent = change.text;
+      }
+    });
+  }
+  function localContent() {
+    try { return JSON.parse(localStorage.getItem('ifq_content') || 'null'); } catch (_) { return null; }
+  }
+  fetch('/api/content', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : localContent(); }).catch(function () { return localContent(); }).then(function (content) {
     if (!content) return;
     var tries = 0, timer = setInterval(function () {
-      tries++; if (document.getElementById('blogs') && document.querySelector('.ifq-contact-simple')) { clearInterval(timer); apply(content); }
+      tries++; if (document.getElementById('blogs') && document.querySelector('.ifq-contact-simple')) { apply(content); if (tries > 20) clearInterval(timer); }
       if (tries > 100) clearInterval(timer);
     }, 100);
-  }).catch(function () {});
+  });
 })();
